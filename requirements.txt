@@ -2,8 +2,6 @@ streamlit==1.31.1
 pandas==2.2.2
 numpy==1.26.4
 scikit-learn==1.3.2
-scipy==1.11.4
 joblib
 huggingface_hub==0.20.3
 hf_transfer
-gdown
