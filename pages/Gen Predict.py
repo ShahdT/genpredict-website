@@ -7,14 +7,12 @@ import joblib
 REPO_ID = "shahdt/voting_model"
 MODEL_FILENAME = "model.pkl"
 
-@st.cache_resource(show_spinner="Predicting...")
+@st.cache_resource
 def load_model():
     model_path = hf_hub_download(
         repo_id=REPO_ID,
         filename=MODEL_FILENAME,
-        repo_type="model",
-        local_dir=".",
-        local_dir_use_symlinks=False,
+        repo_type="model"
     )
     return joblib.load(model_path)
 
