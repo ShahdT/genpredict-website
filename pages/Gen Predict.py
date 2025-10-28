@@ -2,6 +2,25 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import gdown
+import os
+
+def download_file_from_drive(file_id, dst):
+    url = f"https://drive.google.com/file/d/1XJqCeJp0uDxs4rwmz8fwNIIBx8bx59D0/view?usp=sharing={file_id}"
+    if not os.path.exists(dst):
+        gdown.download(url, dst, quiet=False)
+    return dst
+
+@st.cache_resource
+def load_preprocessor():
+    return joblib.load("preprocessor.pkl")
+
+
+@st.cache_resource
+def load_model_from_drive(file_id, local_name="model.pkl"):
+    path = download_file_from_drive(file_id, local_name)
+    model = joblib.load(path)
+    return model
 
 class_names = [
     "Mitochondrial genetic inheritance disorders",
@@ -34,18 +53,18 @@ with st.form("patient_form"):
     mother_age = st.number_input("Mother Age", min_value=0, max_value=120, step=1)
     father_age = st.number_input("Father Age", min_value=0, max_value=120, step=1)
     status = st.selectbox("Status", ["Alive", "Deceased"])
-    respiratory_rate = st.selectbox("Respiratory Rate", ["Normal", "Tachypnea", "Bradypnea", "Other"])
-    heart_rates = st.selectbox("Heart Rates", ["Normal", "Tachycardia", "Bradycardia"])
+    respiratory_rate = st.selectbox("Respiratory Rate", ["Normal", "Tachypnea"])
+    heart_rates = st.selectbox("Heart Rates", ["Normal", "Tachycardia"])
     test_4 = st.checkbox("Test 4 (checked = 1, unchecked = 0)")
     follow_up = st.selectbox("Follow Up", ["Low", "High"])
     gender = st.selectbox("Gender", ["Male", "Female"])
-    folic_acid = st.selectbox("Folic Acid", ["Low", "Normal", "High"])
+    folic_acid = st.selectbox("Folic Acid", ["Yes", "No"])
     maternal_illness = st.selectbox("Maternal Illness", ["Yes", "No"])
     assisted_conception = st.selectbox("Assisted Conception", ["Yes", "No"])
     history_pregnancies = st.selectbox("History Previous Pregnancies", ["Yes", "No"])
     previous_abortion = st.number_input("Previous Abortion", min_value=0, max_value=4, step=1)
     birth_defects = st.selectbox("Birth Defects", ["Singular", "Multiple"])
-    white_blood_cell = st.number_input("White Blood Cell")
+    white_blood_cell = st.number_input("White Blood Cell (µL)", min_value=0.0)
     blood_test_result = st.selectbox("Blood Test Result", ["normal", "inconclusive", "slightly abnormal", "abnormal"])
 
     st.subheader("Symptoms")
@@ -79,7 +98,7 @@ if submitted:
         'History_Previous_Pregnancies': history_pregnancies,
         'Previous_Abortion': np.int64(previous_abortion),
         'Birth_Defects': birth_defects,
-        'White_Blood_Cell': white_blood_cell,
+        'White_Blood_Cell': float(white_blood_cell),
         'Blood_Test_Result': blood_test_result,
         'Symptom_1': bool(symptom_1),
         'Symptom_2': bool(symptom_2),
@@ -93,8 +112,10 @@ if submitted:
     st.dataframe(df_row)
 
     #load preprocessor and model
-    pipe = joblib.load("preprocessor.pkl")
-    voting_model = joblib.load("model.pkl")
+    pipe = load_preprocessor()
+    MODEL_ID = "1XJqCeJp0uDxs4rwmz8fwNIIBx8bx59D0"
+    voting_model = load_model_from_drive(MODEL_ID)
+
 
     input_transformed = pipe.transform(df_row)
     #st.dataframe(input_transformed)
