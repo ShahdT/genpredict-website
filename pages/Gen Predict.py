@@ -1,26 +1,28 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from huggingface_hub import hf_hub_download
 import joblib
-import gdown
-import os
 
-def download_file_from_drive(file_id, dst):
-    url = f"https://drive.google.com/file/d/1XJqCeJp0uDxs4rwmz8fwNIIBx8bx59D0/view?usp=sharing={file_id}"
-    if not os.path.exists(dst):
-        gdown.download(url, dst, quiet=False)
-    return dst
+REPO_ID = "shahdt/voting_model"
+MODEL_FILENAME = "model.pkl"
+
+@st.cache_resource(show_spinner="Predicting...")
+def load_model():
+    model_path = hf_hub_download(
+        repo_id=REPO_ID,
+        filename=MODEL_FILENAME,
+        repo_type="model",
+        local_dir=".",
+        local_dir_use_symlinks=False,
+    )
+    return joblib.load(model_path)
+
+
 
 @st.cache_resource
 def load_preprocessor():
     return joblib.load("preprocessor.pkl")
-
-
-@st.cache_resource
-def load_model_from_drive(file_id, local_name="model.pkl"):
-    path = download_file_from_drive(file_id, local_name)
-    model = joblib.load(path)
-    return model
 
 class_names = [
     "Mitochondrial genetic inheritance disorders",
@@ -114,7 +116,7 @@ if submitted:
     #load preprocessor and model
     pipe = load_preprocessor()
     MODEL_ID = "1XJqCeJp0uDxs4rwmz8fwNIIBx8bx59D0"
-    voting_model = load_model_from_drive(MODEL_ID)
+    voting_model = load_model()
 
 
     input_transformed = pipe.transform(df_row)
