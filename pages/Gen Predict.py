@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 from huggingface_hub import hf_hub_download
 import joblib
-import streamlit as st
 import base64
 
 # ------------------ Page Configuration ------------------
@@ -32,7 +31,7 @@ st.markdown(f"""
 
     /* logo*/
     .logo-box {{
-        position: fixed;
+        position: absolute;
         top: 20px;
         left: 20px;
         width: 160px;
