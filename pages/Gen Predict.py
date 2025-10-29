@@ -4,6 +4,14 @@ import numpy as np
 from huggingface_hub import hf_hub_download
 import joblib
 
+try:
+    # check if the key exists in session state
+    _ = st.session_state.keep_graphics
+except AttributeError:
+    # otherwise set it to false
+    st.session_state.keep_graphics = False
+
+
 REPO_ID = "shahdt/voting_model"
 MODEL_FILENAME = "model.pkl"
 
@@ -15,8 +23,6 @@ def load_model():
         repo_type="model"
     )
     return joblib.load(model_path)
-
-
 
 @st.cache_resource
 def load_preprocessor():
@@ -113,7 +119,6 @@ if submitted:
 
     #load preprocessor and model
     pipe = load_preprocessor()
-    MODEL_ID = "1XJqCeJp0uDxs4rwmz8fwNIIBx8bx59D0"
     voting_model = load_model()
 
 
