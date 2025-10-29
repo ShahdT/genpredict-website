@@ -3,7 +3,7 @@ from PIL import Image
 import base64
 
 # ------------------ Page Configuration ------------------
-st.set_page_config(page_title="GenPredict1111", layout="wide")
+st.set_page_config(page_title="GenPredict", layout="wide")
 
 # ------------------ Paths ------------------
 logo_path = "Logo.png"
@@ -50,7 +50,7 @@ st.markdown(f"""
     /* Project Name*/
     .center-text {{
         text-align: center;
-        font-size: 70px;
+        font-size: 50px;
         font-weight: bold;
         margin-top: 50px;
         color: #064635;
@@ -107,4 +107,18 @@ banner = Image.open(banner_path)
 
 
 # ------------------ Text under banner ------------------
-st.markdown('<div class="bottom-text">TEXT</div>', unsafe_allow_html=True)
+st.markdown('''
+<div class="bottom-text" style="font-size:16px; line-height:1.6; text-align:justify;">
+<b>About GenPredict:</b><br>
+GenPredict is an intelligent system designed to help doctors and families detect and classify Gene disorders in children early.<br><br>
+
+<b>GenPredict Goal:</b><br>
+Our Goal is to assist Parents and Doctors by providing an easy-to-use tool to make a quick, accurate, and data-driven decision to improve children's health.<br><br>
+
+<b>How GenPredict Works:</b><br>
+It is an AI model trained to classify Gene disorders into three different types:<br>
+1- Mitochondrial genetic inheritance disorders,<br>
+2- Multifactorial genetic inheritance disorders,<br>
+3- Single-gene inheritance diseases.
+</div>
+''', unsafe_allow_html=True)

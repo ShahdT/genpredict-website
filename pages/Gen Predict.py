@@ -3,17 +3,99 @@ import pandas as pd
 import numpy as np
 from huggingface_hub import hf_hub_download
 import joblib
+import streamlit as st
+import base64
+
+# ------------------ Page Configuration ------------------
+st.set_page_config(page_title="GenPredict", layout="wide")
+
+# ------------------ Paths ------------------
+logo_path = "Logo.png"
+
+# ------------------ Colors ------------------
+main_bg_color = "#ECF3F0"
+
+# ------------------ Convert image to Base64 ------------------
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+logo_base64 = get_base64_of_bin_file(logo_path)
+
+# ------------------ CSS ------------------
+st.markdown(f"""
+    <style>
+    .stApp {{
+        background-color: {main_bg_color};
+    }}
+
+    /* logo*/
+    .logo-box {{
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        width: 160px;
+        height: 160px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+    }}
+    .logo-box img {{
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }}
+
+    /* Project Name*/
+    .center-text {{
+        text-align: center;
+        font-size: 50px;
+        font-weight: bold;
+        margin-top: 50px;
+        color: #064635;
+    }}
+
+    /* Text */
+    .bottom-text {{
+        text-align: center;
+        font-size: 24px;
+        margin-top: 20px;
+        color: #064635;
+    }}
+
+    </style>
+
+<!-- Topic -->
+<div class="center-text">GenPredict</div>
+
+<!-- Logo -->
+<div class="logo-box">
+    <img src="data:image/png;base64,{logo_base64}">
+</div>
+
+""", unsafe_allow_html=True)
 
 try:
-    # check if the key exists in session state
     _ = st.session_state.keep_graphics
 except AttributeError:
-    # otherwise set it to false
     st.session_state.keep_graphics = False
-
 
 REPO_ID = "shahdt/voting_model"
 MODEL_FILENAME = "model.pkl"
+
+def fix_monotonic_cst_issue(model):
+    if hasattr(model, 'estimators_'):
+        for estimator in model.estimators_:
+            if hasattr(estimator, 'tree_') and not hasattr(estimator, 'monotonic_cst'):
+                estimator.monotonic_cst = None
+            if hasattr(estimator, 'estimators_'):
+                for sub_estimator in estimator.estimators_:
+                    if hasattr(sub_estimator, 'tree_') and not hasattr(sub_estimator, 'monotonic_cst'):
+                        sub_estimator.monotonic_cst = None
+    return model
 
 @st.cache_resource
 def load_model():
@@ -22,7 +104,9 @@ def load_model():
         filename=MODEL_FILENAME,
         repo_type="model"
     )
-    return joblib.load(model_path)
+    model = joblib.load(model_path)
+    model = fix_monotonic_cst_issue(model)
+    return model
 
 @st.cache_resource
 def load_preprocessor():
@@ -35,8 +119,12 @@ class_names = [
 ]
 
 def predict_ensemble_model(model, X_processed_test):
+    # تطبيق إصلاح إضافي قبل التنبؤ
+    model = fix_monotonic_cst_issue(model)
+
     y_pred = model.predict(X_processed_test)
     y_pred_labels = np.take(class_names, y_pred.astype(int), mode='raise')
+
     if hasattr(X_processed_test, 'shape'):
         if len(y_pred_labels) == 1:
             return y_pred_labels[0]
@@ -117,24 +205,22 @@ if submitted:
     st.success("Form submitted successfully!")
     st.dataframe(df_row)
 
-    #load preprocessor and model
+    # load preprocessor and model
     pipe = load_preprocessor()
     voting_model = load_model()
 
-
     input_transformed = pipe.transform(df_row)
-    #st.dataframe(input_transformed)
 
     y_pred_label = predict_ensemble_model(voting_model, input_transformed)
 
     if y_pred_label == "Mitochondrial genetic inheritance disorders":
         prediction_class = ("Mitochondrial genetic inheritance disorders", "🧪", "#DC2626")
-
-    if y_pred_label == "Multifactorial genetic inheritance disorders":
+    elif y_pred_label == "Multifactorial genetic inheritance disorders":
         prediction_class = ("Multifactorial genetic inheritance disorders", "🧬🧪", "#16A34A")
-
-    if y_pred_label == "Single-gene inheritance diseases":
+    elif y_pred_label == "Single-gene inheritance diseases":
         prediction_class = ("Single-gene inheritance diseases", "🧬", "#2563EB")
+    else:
+        prediction_class = (y_pred_label, "❓", "#6B7280")
 
     class_name, emoji, color = prediction_class
 
