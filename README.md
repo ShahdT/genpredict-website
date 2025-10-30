@@ -21,7 +21,7 @@ We used an **Ensemble Voting Classifier** that combines:
 - **Support Vector Machine (SVM)**
 
 This method improves prediction performance and robustness across multiple disorder types. 
-
+![Voting_model](assets/Voting_model.png)
 
 
 ### 🔬 Model Classification Capabilities
