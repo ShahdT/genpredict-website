@@ -19,7 +19,7 @@ By analyzing key medical and inherited risk factors, GenPredict helps families a
 We used an **Ensemble Voting Classifier** that combines:
 - **Extra Trees Classifier**
 - **Support Vector Machine (SVM)**
-![Voting_model](assets/Voting_model.png)
+![Voting_model](assets/Voting_model1.png)
 
 This method improves prediction performance and robustness across multiple disorder types. 
 
