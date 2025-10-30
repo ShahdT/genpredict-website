@@ -13,6 +13,7 @@ By analyzing key medical and inherited risk factors, GenPredict helps families a
 | Application | Streamlit |
 | Version Control | Git & GitHub |
 
+
 ## 🤖 Model Architecture
 
 We used an **Ensemble Voting Classifier** that combines:
@@ -29,6 +30,7 @@ GenPredict AI model is trained to classify gene disorders into **three different
 2️⃣ **Multifactorial genetic inheritance disorders**  
 3️⃣ **Single-gene inheritance diseases**
 
+
 ## 🖥️ GenPredict Website
 ### 📸 Main Page Screenshot
 ![Main](assets/Main_page_GenPredict.png)
@@ -42,6 +44,7 @@ GenPredict AI model is trained to classify gene disorders into **three different
 
 You can try the GenPredict website here 👇  
 🔗 [GenPredict Website](https://genpredict-website-zbffqzryrhbftp98apk5pb.streamlit.app/)
+
 
 You can find the Model.pkl of GenPredict here 👇  
 🔗 [GenPredict MODEL.PKL](https://huggingface.co/shahdt/voting_model)
