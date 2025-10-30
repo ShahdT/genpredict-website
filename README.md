@@ -23,7 +23,9 @@ We used an **Ensemble Voting Classifier** that combines:
 This method improves prediction performance and robustness across multiple disorder types. 
 
 
+
 ### 🔬 Model Classification Capabilities
+
 GenPredict AI model is trained to classify gene disorders into **three different types**:
 
 1️⃣ **Mitochondrial genetic inheritance disorders**  
