@@ -49,7 +49,7 @@ You can try the GenPredict website here 👇
 | Name              | Linkedin |
 |------------------ |---------------------------------------------------------|
 | Shahad Alhamam    | [Linkedin](https://www.linkedin.com/in/shahad-alhamam)     |
-| Bashyer Alsulami  | [Linkedin](https://www.linkedin.com/in/bashyer-alsulami)   |
 | Shahad Altalhi    | [Linkedin](https://www.linkedin.com/in/altalhishahd)       |
+| Bashyer Alsulami  | [Linkedin](https://www.linkedin.com/in/bashyer-alsulami)   |
 | Shahad Alfahmi    | [Linkedin](http://linkedin.com/in/shahad-alfahmi-390729312)|
 
