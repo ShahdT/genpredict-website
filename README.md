@@ -30,6 +30,15 @@ GenPredict AI model is trained to classify gene disorders into **three different
 3️⃣ **Single-gene inheritance diseases**
 
 ## 🖥️ GenPredict Website
+### 📸 Main Page Screenshot
+![Main](assets/Main_page_GenPredict.png)
+
+### 📸 Prediction Page Screenshot
+![Prediction Page](assets/prediction_page.png)
+
+### 📸 Prediction Result Screenshot
+![Prediction Result](assets/prediction_result.png)
+
 
 You can try the GenPredict web here 👇  
 🔗 https://genpredict-website-zbffqzryrhbftp98apk5pb.streamlit.app/
