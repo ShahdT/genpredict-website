@@ -34,21 +34,22 @@ GenPredict AI model is trained to classify gene disorders into **three different
 ![Main](assets/Main_page_GenPredict.png)
 
 ### 📸 Prediction Page Screenshot
-![Prediction Page](assets/prediction_page.png)
+![Prediction Page](assets/Prediction_Page.png)
 
 ### 📸 Prediction Result Screenshot
-![Prediction Result](assets/prediction_result.png)
+![Prediction Result](assets/Prediction_Result.png)
 
 
 You can try the GenPredict web here 👇  
-🔗 https://genpredict-website-zbffqzryrhbftp98apk5pb.streamlit.app/
+🔗 [GenPredict Website](https://genpredict-website-zbffqzryrhbftp98apk5pb.streamlit.app/)
 
-## 👥 Team
 
-| Name | Linkedin |
-|------|------|
-| Bashyer Alsulami | https://www.linkedin.com/in/bashyer-alsulami |
-| Shahad Alhamam | https://www.linkedin.com/in/shahad-alhamam |
-| Shahad Altalhi | https://www.linkedin.com/in/altalhishahd |
-| Shahad Alfahmi | http://linkedin.com/in/shahad-alfahmi-390729312 |
+## 👥 Meet GenPredict Team
+
+| Name              | Linkedin |
+|------------------ |---------------------------------------------------------|
+| Shahad Alhamam    | [Linkedin](https://www.linkedin.com/in/shahad-alhamam)     |
+| Bashyer Alsulami  | [Linkedin](https://www.linkedin.com/in/bashyer-alsulami)   |
+| Shahad Altalhi    | [Linkedin](https://www.linkedin.com/in/altalhishahd)       |
+| Shahad Alfahmi    | [Linkedin](http://linkedin.com/in/shahad-alfahmi-390729312)|
 
