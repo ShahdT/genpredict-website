@@ -1,4 +1,4 @@
-hi# 🧬 GenPredict  
+# 🧬 GenPredict  
 GenPredict is an AI-powered prediction model designed to support early detection of genetic disorders in children.  
 By analyzing key medical and inherited risk factors, GenPredict helps families and healthcare professionals take proactive steps toward early diagnosis and prevention.
 
