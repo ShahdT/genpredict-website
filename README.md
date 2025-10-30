@@ -40,7 +40,7 @@ GenPredict AI model is trained to classify gene disorders into **three different
 ![Prediction Result](assets/Prediction_Result.png)
 
 
-You can try the GenPredict web here 👇  
+You can try the GenPredict website here 👇  
 🔗 [GenPredict Website](https://genpredict-website-zbffqzryrhbftp98apk5pb.streamlit.app/)
 
 
