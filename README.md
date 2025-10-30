@@ -1,4 +1,4 @@
-# 🧬 GenPredict  
+hi# 🧬 GenPredict  
 GenPredict is an AI-powered prediction model designed to support early detection of genetic disorders in children.  
 By analyzing key medical and inherited risk factors, GenPredict helps families and healthcare professionals take proactive steps toward early diagnosis and prevention.
 
@@ -58,7 +58,7 @@ You can find the Model.pkl of GenPredict here 👇
 | Name              | Linkedin |
 |------------------ |---------------------------------------------------------|
 | Shahad Alhamam    | [Linkedin](https://www.linkedin.com/in/shahad-alhamam)     |
-| Shahad Altalhi    | [Linkedin](https://www.linkedin.com/in/altalhishahd)       |
+| Shahd Altalhi    | [Linkedin](https://www.linkedin.com/in/altalhishahd)       |
 | Bashyer Alsulami  | [Linkedin](https://www.linkedin.com/in/bashyer-alsulami)   |
 | Shahad Alfahmi    | [Linkedin](http://linkedin.com/in/shahad-alfahmi-390729312)|
 
