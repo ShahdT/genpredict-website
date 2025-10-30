@@ -43,6 +43,9 @@ GenPredict AI model is trained to classify gene disorders into **three different
 You can try the GenPredict website here 👇  
 🔗 [GenPredict Website](https://genpredict-website-zbffqzryrhbftp98apk5pb.streamlit.app/)
 
+You can find the Model.pkl of GenPredict here 👇  
+🔗 [GenPredict MODEL.PKL](https://huggingface.co/shahdt/voting_model)
+
 
 ## 👥 Meet GenPredict Team
 
